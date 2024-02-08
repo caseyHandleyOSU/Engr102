@@ -54,7 +54,7 @@ def you_forgot_something():
     # You may need to use google to find the answer.
     # Your Answer: 
 
-    if 1 + 1 = 2:
+    if 1 + 1 == 2:
         print("They are equal!")
 
     # TODO: Resolve the error and run the code again to make sure nothing happens
@@ -68,7 +68,7 @@ def it_matters():
     # Your Answer: 
 
     for i in range(10):
-    print(i)
+        print(i)
 
     # TODO: Resolve the error and run the code again to make sure nothing happens
 
@@ -79,7 +79,7 @@ def hello_world():
     # TODO: What is the type of error for this? (What's in the place of xxxxxxx)
     # Your answer: 
     
-    prnit("Hello World")
+    print("Hello World")
 
     # TODO resolve the error, and run the code again to make sure nothing happens.
 
@@ -93,7 +93,7 @@ def it_does_not_compute():
     x = "18"    # This is a string
     y = 3       # This is an integer
 
-    z = x / y
+    z = (int)(x) / y
 
     # TODO resolve the error, and run the code again to make sure nothing happens.
 
@@ -113,7 +113,10 @@ def my_list_is_too_short():
     # Your answer: 
 
     my_list = ["C", "O", "O", "L"]
-    print(my_list[4])
+    try:
+        print(my_list[4])
+    except IndexError:
+        print("There is no element 4 in my_list")
 
     # TODO resolve the error, and run the code again to make sure nothing happens.
 
@@ -128,7 +131,10 @@ def everyone_knows_this_math_rule():
     x = 0
     y = 10
 
-    z = y / x
+    try:
+        z = y / x
+    except ZeroDivisionError:
+        print("Cannot divide by 0")
 
     # TODO resolve the error, and run the code again to make sure nothing happens.
 
@@ -140,9 +146,11 @@ def giving_functions_the_wrong_stuff():
 
     # TODO: What is the type of error for this?
     # Your answer: 
-
     my_int = int("5") # This works fine, because "5" is a number
-    my_int_2 = int("Dan") # What happens if we try to pass a non-number?
+    try:
+        my_int_2 = int("Dan") # What happens if we try to pass a non-number?
+    except ValueError:
+        print("Not able to parse 'Dan' into int")
 
     # TODO resolve the error, and run the code again to make sure nothing happens.
 
@@ -155,10 +163,10 @@ def make_your_own_error():
     # What happens if the function gets -5? or 12? It will likely cause an unexpected error somewhere deeper in the code.
     # However, we can stop the code in an expected way by raising our own error.
 
-    x = 12 # Oops, this isn't between 1 and 10
+    x = 9 # Oops, this isn't between 1 and 10
 
     if x < 1 or x > 10:
-        raise TypeError("The number must be between 1 and 10")
+        raise IndexError("The number must be between 1 and 10")
     
     # TODO: Run the code to see how our raised error occurs
 
