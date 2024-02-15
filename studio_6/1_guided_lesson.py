@@ -53,7 +53,7 @@ class Student:
         """
         Returns the last four digits of this student's ID
         """
-        return str(self.__id)[-4:]
+        return int(str(self.__id)[-4:])
     
     def print_degree_title(self):
         """
