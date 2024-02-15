@@ -44,19 +44,36 @@ class Student:
 
     @property
     def id(self):
+        """
+        Returns this student's ID
+        """
         return self.__id
     
     def get_last_four(self):
+        """
+        Returns the last four digits of this student's ID
+        """
         return str(self.__id)[-4:]
     
     def print_degree_title(self):
+        """
+        Prints the degree this student is seeking
+        """
         print("Bachelor of {major}".format(major=self.major))
+
+    def get_full_name(self):
+        """
+        Returns this student's full name
+        """
+        return "{0} {1}".format(self.first_name, self.last_name)
 
 # TODO: Let's recreate our 3 students as objects of our new class!
 
 student_1 = Student(18584831, "Daniel", "White", "Computer Science", 2026)
 student_2 = Student(18582185, "Jennie", "Kim", "Chemistry", 2025)
 student_3 = Student(2343524, "Eleana", "Cherry", "Biology", 2028)
+
+print(student_1.get_full_name())
 
 # OOP Property Abstraction: The idea of making certain data private
 # This prevents other functions/parts of the code from accessing or modifying a value.
@@ -92,6 +109,9 @@ class GradStudent(Student):
         self.specialization = specialization
 
     def print_degree_title(self):
+        """
+        Prints the degree this student is seeking, and their specialization
+        """
         print("Masters of {major} with a specialization in {spec}.".format(major=self.major, spec=self.specialization))
 
 # create a new student_4 which uses GradStudent instead.
