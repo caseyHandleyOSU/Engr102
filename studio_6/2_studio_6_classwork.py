@@ -10,13 +10,22 @@ class Vehicle:
         
 class Bus(Vehicle):
     def __init__(self, max_speed, mileage, seating_capacity=4):
+        """
+        Initialize a new bus
+        """
         super().__init__(max_speed, mileage)
         self.seating_capacity = seating_capacity
 
     def __str__(self):
+        """
+        Format and return the parameters of the bus
+        """
         return "This bus has a max speed of {speed:.0f}, {miles:.0f} mileage, and a seating capacity of {seats:.0f}.".format(speed=self.max_speed, miles=self.mileage, seats=self.seating_capacity)
 
     def set_seating_capacity(self, num):
+        """
+        Set the seating capacity of the bus
+        """
         self.seating_capacity = num
 
 # DONE: Instantiate your Bus class to an object to a variable called school_bus, the max speed 80, and mileage 45000.
@@ -37,13 +46,22 @@ print(school_bus)
 
 class Car(Vehicle):
     def __init__(self, max_speed, mileage, model="Volvo"):
+        """
+        Initialize a new car
+        """
         super().__init__(max_speed, mileage)
         self.model = model
 
     def __str__(self):
+        """
+        Format and return this car's parameters
+        """
         return "This car is a {model}, with a max speed of {speed:.0f} and {miles:.0f} miles!".format(model=self.model,speed=self.max_speed,miles=self.mileage)
     
     def set_model(self, model):
+        """
+        Update the model of this car
+        """
         self.model = model
 
 car = Car(214, 3123)
