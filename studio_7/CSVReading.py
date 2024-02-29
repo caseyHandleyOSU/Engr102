@@ -2,29 +2,33 @@ import csv
 from Participant import Participant
 def main():
     survey_rows = load_csv_file('survey.csv')
-    participants = create_participants(survey_rows)
-    print("Answer 2:", compare_industry_by_salary(participants, 5))
-    compare_industry_by_age(participants)
+    participants = create_participants(survey_rows, input("What currency would you like to filter by? ").upper())
+    print("Answer 2:", compare_participants_by(participants, 'industry', 5))
+    print("Answer 3:", compare_participants_by(participants, 'age', -1))
+    print("Answer 4:", compare_participants_by(participants, 'education', -1))
+    print("Answer 5:", compare_participants_by(participants, 'experience', -1))
 
 
-def create_participants(rows):
+def create_participants(rows, currency):
     # Generate participant objs from csv file
     participants = []
     for row in rows:
-        if(row[7].upper() == 'USD'):
+        if(row[7].upper() == currency):
             participants.append(Participant(row[1], row[2], row[5], row[7], row[10], row[13], row[15]))
-    print('Answer 1: There are {0} participants who use USD.'.format(len(participants)))
+    print('Answer 1: \n  There are {0} participants who use {1}'.format(len(participants), currency))
     return participants
 
-def compare_industry_by_salary(participants, num):
-    sums = get_sum_of_properties(participants, 10, 'industry')
+def compare_participants_by(participants, industry, min_required):
+    """
+    Abstracted function to compare participants based on an industry, with an optional minimum-required-participants parameter
+    """
+    sums = get_sum_of_properties(participants, min_required, industry)
     sorted_sums = sorted(sums.items(), key=lambda item: item[1])
-    top_num = sorted_sums[-num:]
-    return "The top {0} industries are: {1}".format(num,format_as_string(dict(reversed(top_num))))
-
-def compare_industry_by_age(participants):
-    sums = get_sum_of_properties(participants, 1, 'age')
-    return "{0}".format(format_as_string(dict(reversed(sums))))
+    if min_required != 1:
+        top_num = sorted_sums[-min_required:]
+    else:
+        top_num = sorted_sums
+    return "{0}".format(format_as_string(dict(reversed(top_num))))
 
 def format_as_string(d):
     """
