@@ -45,7 +45,7 @@ def format_as_string(d):
 def get_sum_of_properties(participants, minimum_in_field, property):
     #keys = get_unique_vals_of_property(participants, compare)
     d = {}
-    # Populate dict of industry-[salary] pairs
+    # Populate dict of industry-[salary] pairs, O(n)
     for p in participants:
         attr = getattr(p, property)
         try:
@@ -56,11 +56,13 @@ def get_sum_of_properties(participants, minimum_in_field, property):
             if attr != '':
                 d[attr] = [p.salary]
     # Filter out industries with len < 10
-    d2 = {}
+    d2 = {} 
+    # O(k), the number of individual members of 'property' for the participants
     for k in d:
         if len(d[k]) >= minimum_in_field:
             d2[k] = avg(d[k])
-    return d2    
+    return d2  
+
     
 def filter_by_val(participants, property, val):
     filtered = []
