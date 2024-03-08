@@ -20,7 +20,7 @@ def main():
         num += 1   
         try:
             url_processing = url + get_next_url(soup)
-            #sleep(1)
+            sleep(1)
         except AttributeError:
             break
     
